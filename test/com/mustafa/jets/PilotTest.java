@@ -9,7 +9,7 @@ import com.mustafa.jets.Pilot;
 
 public class PilotTest {
 	
-	Pilot p;
+	private Pilot p;
 
 	@Before
 	public void setUp() throws Exception {

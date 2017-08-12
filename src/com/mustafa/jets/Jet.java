@@ -82,7 +82,7 @@ public class Jet {
 	}
 
 	public double convertToMach() {
-		return 0.0;
+		return speed / 767.269;
 		
 	}
 
