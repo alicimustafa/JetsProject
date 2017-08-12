@@ -25,7 +25,9 @@ public class Pilot {
 	}
 	
 	public void addExperience(int e) {
-		
+		if(e >= 0) {
+			fligthExperiance += e;
+		}
 	}
 	
 	public void addAge(int a) {
