@@ -10,22 +10,38 @@ public class JetHanger {
 		// TODO Auto-generated constructor stub
 	}
 
+	public JetHanger(Jet[] jetList) {
+		super();
+		this.jetList = jetList;
+	}
+
+
+
 	public Jet[] getJetList() {
 		return jetList;
 	}
 
 	public void addJet(Jet newJet) {
-		
+		int length = jetList.length;
+		Jet[] tempArr = new Jet[length + 1];
+		tempArr[length] = newJet;
+		jetList = tempArr;
 	}
 
 	public Jet getFastest() {
-		
-		return null;
+		Jet fast = jetList[0];
+		for (Jet jet : jetList) {
+			fast = jet.getSpeed() > fast.getSpeed() ? jet : fast; 
+		}
+		return fast;
 	}
 	
 	public Jet getLongesRange() {
-		
-		return null;
+		Jet longest = jetList[0];
+		for (Jet jet : jetList) {
+			longest = jet.getRange() > longest.getRange() ? jet : longest;
+		}
+		return longest;
 	}
 
 	@Override
