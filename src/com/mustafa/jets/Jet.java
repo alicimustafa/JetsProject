@@ -81,6 +81,10 @@ public class Jet {
 		return planeId;
 	}
 
+	public double convertToMach() {
+		return 0.0;
+		
+	}
 
 	@Override
 	public String toString() {
@@ -149,9 +153,5 @@ public class Jet {
 		return true;
 	}
 	
-	public double convertToMach() {
-		return 0.0;
-		
-	}
 
 }
