@@ -1,3 +1,4 @@
+package com.mustafa.jets;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -17,6 +18,7 @@ public class PilotTest {
 
 	@After
 	public void tearDown() throws Exception {
+		p = null;
 	}
 
 	@Test
@@ -30,5 +32,18 @@ public class PilotTest {
 		p.addExperience(-10);
 		assertTrue(p.getFligthExperiance() == 1000);
 	}
+	
+	@Test
+	public void test_addAge_adds_to_age() {
+		p.addAge(4);
+		assertTrue(p.getAge() == 38);
+	}
+	
+	@Test
+	public void test_addAge_does_not_add_negative_age() {
+		p.addAge(-4);
+		assertTrue(p.getAge() == 34);
+	}
+	
 
 }

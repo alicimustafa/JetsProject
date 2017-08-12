@@ -31,7 +31,9 @@ public class Pilot {
 	}
 	
 	public void addAge(int a) {
-		
+		if(a >= 0) {
+			age += a;
+		}
 	}
 
 	@Override
