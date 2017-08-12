@@ -10,6 +10,12 @@ public class PilotLounge {
 		// TODO Auto-generated constructor stub
 	}
 
+	public PilotLounge(Pilot[] pilots) {
+		super();
+		this.pilotList = pilots;
+		this.freePilots = pilots;
+	}
+
 	public Pilot[] getPilotList() {
 		return pilotList;
 	}
@@ -19,12 +25,29 @@ public class PilotLounge {
 	}
 	
 	public void addPilot(Pilot p) {
-		
+		int pilotLitstLength = pilotList.length;
+		int freePilotLength = freePilots.length;
+		Pilot[] temp = new Pilot[pilotLitstLength+1];
+		temp[pilotLitstLength] = p;
+		pilotList = temp;
+		temp = new Pilot[freePilotLength+1];
+		temp[freePilotLength] = p;
+		freePilots = temp;
 	}
 	
 	public Pilot getFreePilot() {
-		
-		return null;
+		int r = (int)(Math.random() * freePilots.length);
+		Pilot[] temp = new Pilot[freePilots.length - 1];
+		Pilot rPilot = freePilots[r];
+		for (int i = 0; i < temp.length; i++) {
+			if(i >= r) {
+				temp[i] = freePilots[i+1];
+			} else {
+				temp[i] = freePilots[i];
+			}
+		}
+		freePilots = temp;
+		return rPilot;
 	}
 
 	@Override
