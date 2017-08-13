@@ -88,6 +88,11 @@ public class AirportManager {
 	private void printJet(Jet jet) {
 		System.out.printf("Model: %s Speed: %.2f Range: %d Price: %.2f %n", 
 				jet.getModel(), jet.convertToMach(), jet.getRange(), jet.getPrice());
+		printPilot(jet.getCurrentPilot());
+	}
+	
+	private void printPilot(Pilot p) {
+		System.out.printf("Pilot name: %s Age: %d Hours of Flight: %d%n", p.getName(), p.getAge(), p.getFligthExperiance());
 	}
 	
 	private Jet generateNewJet() {
@@ -107,7 +112,16 @@ public class AirportManager {
 	}
 	
 	private Pilot generateNewPilot() {
-		return null;
+		String name;
+		int age , experiance;
+		System.out.println("Enter Pilot information");
+		System.out.print("Name: ");
+		name = keyboard.next();
+		System.out.print("Age: ");
+		age = keyboard.nextInt();
+		System.out.print("Experiance: ");
+		experiance = keyboard.nextInt();
+		return new Pilot(name, age, experiance);
 	}
 	
 	@Override

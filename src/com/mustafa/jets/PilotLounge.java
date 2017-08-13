@@ -28,9 +28,15 @@ public class PilotLounge {
 		int pilotLitstLength = pilotList.length;
 		int freePilotLength = freePilots.length;
 		Pilot[] temp = new Pilot[pilotLitstLength+1];
+		for(int i=0; i < pilotLitstLength; i++) {
+			temp[i] = pilotList[i];
+		}
 		temp[pilotLitstLength] = p;
 		pilotList = temp;
 		temp = new Pilot[freePilotLength+1];
+		for(int i= 0; i < freePilots.length; i++) {
+			temp[i] = freePilots[i];
+		}
 		temp[freePilotLength] = p;
 		freePilots = temp;
 	}
