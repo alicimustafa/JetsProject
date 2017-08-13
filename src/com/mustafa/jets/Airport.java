@@ -8,7 +8,7 @@ public class Airport {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public JetHanger getMyAirport() {
+	public JetHanger getMyHanger() {
 		return myHanger;
 	}
 
