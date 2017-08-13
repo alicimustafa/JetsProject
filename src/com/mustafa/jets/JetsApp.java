@@ -3,8 +3,6 @@ package com.mustafa.jets;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import javax.xml.ws.Response;
-
 public class JetsApp {
 
 	public static void main(String[] args) {
@@ -84,6 +82,12 @@ public class JetsApp {
 			printJet(myAirport.getLongesRange());
 			break;
 		case 4:
+			try {
+				myAirport.addJet(generateNewJet(keyboard));
+			} catch(InputMismatchException p) {
+				keyboard.nextLine();
+				System.out.println("Invalid input");
+			}
 			break;
 		}
 	}
@@ -91,14 +95,25 @@ public class JetsApp {
 		for (Jet jet : planes) {
 			printJet(jet);
 		}
-		System.out.print("Continue(y): ");
-		keyboard.next();
-		System.out.println();
-		
 	}
 	public static void printJet(Jet jet) {
 		System.out.printf("Model: %s Speed: %.2f Range: %d Price: %.2f %n", 
 				jet.getModel(), jet.convertToMach(), jet.getRange(), jet.getPrice());
+	}
+	public static Jet generateNewJet(Scanner keyboard) {
+		String model;
+		int range;
+		double price, speed;
+		System.out.println("Enter new jet information");
+		System.out.print("Model: ");
+		model = keyboard.next();
+		System.out.print("Speed: ");
+		speed = keyboard.nextDouble();
+		System.out.print("Range: ");
+		range = keyboard.nextInt();
+		System.out.print("Price: ");
+		price = keyboard.nextDouble();
+		return new Jet(model, price, speed, range, null);
 	}
 
 }

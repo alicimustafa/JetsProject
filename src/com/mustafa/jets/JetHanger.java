@@ -24,6 +24,9 @@ public class JetHanger {
 	public void addJet(Jet newJet) {
 		int length = jetList.length;
 		Jet[] tempArr = new Jet[length + 1];
+		for (int i = 0; i < jetList.length; i++) {
+			tempArr[i] = jetList[i];
+		}
 		tempArr[length] = newJet;
 		jetList = tempArr;
 	}
