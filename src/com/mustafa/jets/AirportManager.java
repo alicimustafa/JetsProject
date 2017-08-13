@@ -28,14 +28,16 @@ public class AirportManager {
 	}
 
 	private void displayMenu() {
-		System.out.println("(1) List Fleet");
-		System.out.println("(2) View Fastest Jet");
-		System.out.println("(3) View Jet with longest Range");
-		System.out.println("(4) Add a Jet to Fleet");
-		System.out.println("(5) List all Pilots");
-		System.out.println("(6) List Available Pilots");
-		System.out.println("(7) Hire a Pilot");
-		System.out.println("(8) Quit");
+		System.out.println("+------------------------------------+");
+		System.out.println("| (1) List Fleet                     |");
+		System.out.println("| (2) View Fastest Jet               |");
+		System.out.println("| (3) View Jet with longest Range    |");
+		System.out.println("| (4) Add a Jet to Fleet             |");
+		System.out.println("| (5) List all Pilots                |");
+		System.out.println("| (6) List Available Pilots          |");
+		System.out.println("| (7) Hire a Pilot                   |");
+		System.out.println("| (8) Quit                           |");
+		System.out.println("+------------------------------------+");
 		System.out.print("Enter Choice: ");
 
 	}
@@ -102,8 +104,10 @@ public class AirportManager {
 	}
 
 	private void printJet(Jet jet) {
+		System.out.println("+------------------------------------------------------------+");
 		System.out.printf("Model: %s Speed: %.2f Range: %d Price: %.2f %n", jet.getModel(), jet.convertToMach(),
 				jet.getRange(), jet.getPrice());
+		
 		printPilot(jet.getCurrentPilot());
 	}
 
