@@ -15,16 +15,16 @@ public class AirportManager {
 	public Airport getMyAirport() {
 		return myAirport;
 	}
-	
+
 	public void start() {
 		int response;
 		do {
 			displayMenu();
 			response = getUserInput();
-			if(response > 0 && response < 6) {
+			if (response > 0 && response < 8) {
 				handleUserInput(response);
 			}
-		} while(response != 6);
+		} while (response != 8);
 	}
 
 	private void displayMenu() {
@@ -32,25 +32,27 @@ public class AirportManager {
 		System.out.println("(2) View Fastest Jet");
 		System.out.println("(3) View Jet with longest Range");
 		System.out.println("(4) Add a Jet to Fleet");
-		System.out.println("(5) Hire a Pilot");
-		System.out.println("(6) Quit");
+		System.out.println("(5) List all Pilots");
+		System.out.println("(6) List Avalable Pilots");
+		System.out.println("(7) Hire a Pilot");
+		System.out.println("(8) Quit");
 		System.out.print("Enter Choice: ");
-		
+
 	}
-	
+
 	private int getUserInput() {
 		int input = 0;
 		try {
 			input = keyboard.nextInt();
-		} catch(InputMismatchException p) {
+		} catch (InputMismatchException p) {
 			System.out.println("You need to enter a number");
 			keyboard.nextLine();
 		}
 		return input;
 	}
-	
+
 	private void handleUserInput(int response) {
-		switch(response) {
+		switch (response) {
 		case 1:
 			printFleet(myAirport.getMyHanger().getJetList());
 			break;
@@ -61,47 +63,69 @@ public class AirportManager {
 			printJet(myAirport.getMyHanger().getLongesRange());
 			break;
 		case 4:
-			try {
-				myAirport.getMyHanger().addJet(generateNewJet());
-			} catch(InputMismatchException p) {
-				keyboard.nextLine();
-				System.out.println("Invalid input");
+			if (myAirport.getMylounge().getFreePilots().length > 0) {
+				try {
+					myAirport.getMyHanger().addJet(generateNewJet());
+				} catch (InputMismatchException p) {
+					keyboard.nextLine();
+					System.out.println("Invalid input");
+				}
+			} else {
+				System.out.println("You need to hire more Pilots before you can add a plane");
 			}
 			break;
 		case 5:
+			printPilotList(myAirport.getMylounge().getPilotList());
+			break;
+		case 6:
+			if (myAirport.getMylounge().getFreePilots().length > 0) {
+				printPilotList(myAirport.getMylounge().getFreePilots());
+			} else {
+				System.out.println("You don't have Avalable Pilots you need to hire more");
+			}
+			break;
+		case 7:
 			try {
 				myAirport.getMylounge().addPilot(generateNewPilot());
-			} catch(InputMismatchException p) {
+			} catch (InputMismatchException p) {
 				keyboard.nextLine();
 				System.out.println("Invalid input");
 			}
 			break;
 		}
 	}
-	
+
 	public void printFleet(Jet[] planes) {
 		for (Jet jet : planes) {
 			printJet(jet);
 		}
 	}
-	
+
 	private void printJet(Jet jet) {
-		System.out.printf("Model: %s Speed: %.2f Range: %d Price: %.2f %n", 
-				jet.getModel(), jet.convertToMach(), jet.getRange(), jet.getPrice());
+		System.out.printf("Model: %s Speed: %.2f Range: %d Price: %.2f %n", jet.getModel(), jet.convertToMach(),
+				jet.getRange(), jet.getPrice());
 		printPilot(jet.getCurrentPilot());
 	}
-	
-	private void printPilot(Pilot p) {
-		System.out.printf("Pilot name: %s Age: %d Hours of Flight: %d%n", p.getName(), p.getAge(), p.getFligthExperiance());
+
+	private void printPilotList(Pilot[] pl) {
+		for (Pilot pilot : pl) {
+			printPilot(pilot);
+		}
 	}
-	
+
+	private void printPilot(Pilot p) {
+		System.out.printf("Pilot name: %s Age: %d Hours of Flight: %d%n", p.getName(), p.getAge(),
+				p.getFligthExperiance());
+	}
+
 	private Jet generateNewJet() {
 		String model;
 		int range;
 		double price, speed;
+		keyboard.nextLine();
 		System.out.println("Enter new jet information");
 		System.out.print("Model: ");
-		model = keyboard.next();
+		model = keyboard.nextLine();
 		System.out.print("Speed: ");
 		speed = keyboard.nextDouble();
 		System.out.print("Range: ");
@@ -110,20 +134,21 @@ public class AirportManager {
 		price = keyboard.nextDouble();
 		return new Jet(model, price, speed, range, myAirport.getMylounge().getFreePilot());
 	}
-	
+
 	private Pilot generateNewPilot() {
 		String name;
-		int age , experiance;
+		int age, experiance;
+		keyboard.nextLine();
 		System.out.println("Enter Pilot information");
 		System.out.print("Name: ");
-		name = keyboard.next();
+		name = keyboard.nextLine();
 		System.out.print("Age: ");
 		age = keyboard.nextInt();
 		System.out.print("Experiance: ");
 		experiance = keyboard.nextInt();
 		return new Pilot(name, age, experiance);
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -157,7 +182,5 @@ public class AirportManager {
 			return false;
 		return true;
 	}
-	
-	
 
 }
