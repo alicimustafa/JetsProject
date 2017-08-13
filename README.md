@@ -27,6 +27,7 @@ You get a menu of options
 * (8) Quit
 
 You can use the menu to add new jets and hire new pilots.
+You can also get a lit of planes and pilots
 The application allows you to enter information about each
 and if you enter in Invalid input. I used try catch blocks 
 to archive this. Pilots are assigned randomly from available 
